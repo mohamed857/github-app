@@ -1,33 +1,28 @@
 <div class="containers">
-
     <div class="group">
-
         <input #userName type="text" class="input" placeholder="Enter your email..." required>
         <button class="btn btn-outline-primary" type="submit" (click)="search(userName.value)">Search</button>
     </div>
-
     @if (user) {
     <div class="details">
         <div class="row">
             <div class="col-4">
-                <img [src]="user.avatar_url" alt="User Photo" class="rounded-circle" width="150" height="150">
+                <img [src]="user.avatar_url" alt="User Photo" class="rounded-circle mx-5" width="150" height="150">
+                <h5 class="mx-4 pt-3">
+                    <a [href]="user.html_url" target="_blank"> <i class="bi bi-link"></i> {{ user.html_url }}</a>
+                </h5>
             </div>
-                <div class="col-6">
-                    
+            <div class="col-6">
                 <p><strong>Name:</strong> {{ user.name }}</p>
                 <p><strong>Username:</strong> {{ user.login }}</p>
-                <p><strong>Location:</strong> {{ user.location }}</p>
+                <p><strong>Location <i class="bi bi-geo-alt-fill"></i>:</strong> {{ user.location }}</p>
                 <p><strong>Public Repositories:</strong> {{ user.public_repos }}</p>
             </div>
         </div>
     </div>
     }
-
-    
-    
     <div class="repositories">
         @if (repositories.length > 0) {
-
         @for (repo of repositories; track $index) {
         <div class="repo p-3 m-3">
             <h5>
@@ -42,21 +37,17 @@
         </div>
         }
         }
-
         @if (userNotFound) {
-
         <div class="p-3">
             <h2>User Not Found</h2>
         </div>
         }
-
     </div>
     <div class="pagination px-5 mx-5">
         <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
         <!-- <button (click)="nextPage()" [disabled]="endIndex <= repositories.length">Next</button> -->
-        <button (click)="nextPage()" >Next</button>
-
-      </div>
+        <button (click)="nextPage()" [disabled]="repositories.length < pageSize-1">Next</button>
+    </div>
     @if (isLoading) {
     <div>
         <!-- Skeleton loader here -->
