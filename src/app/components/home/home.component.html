@@ -1,6 +1,6 @@
 <div class="containers">
     <div class="group">
-        <input #userName type="text" class="input" placeholder="Enter your email..." required>
+        <input #userName type="text" class="input" placeholder="Enter your GitHub username..." required>
         <button class="btn btn-outline-primary" type="submit" (click)="search(userName.value)">Search</button>
     </div>
     @if (user) {
