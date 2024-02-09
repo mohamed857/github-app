@@ -1,0 +1,66 @@
+<div class="containers">
+
+    <div class="group">
+
+        <input #userName type="text" class="input" placeholder="Enter your email..." required>
+        <button class="btn btn-outline-primary" type="submit" (click)="search(userName.value)">Search</button>
+    </div>
+
+    @if (user) {
+    <div class="details">
+        <div class="row">
+            <div class="col-4">
+                <img [src]="user.avatar_url" alt="User Photo" class="rounded-circle" width="150" height="150">
+            </div>
+                <div class="col-6">
+                    
+                <p><strong>Name:</strong> {{ user.name }}</p>
+                <p><strong>Username:</strong> {{ user.login }}</p>
+                <p><strong>Location:</strong> {{ user.location }}</p>
+                <p><strong>Public Repositories:</strong> {{ user.public_repos }}</p>
+            </div>
+        </div>
+    </div>
+    }
+
+    
+    
+    <div class="repositories">
+        @if (repositories.length > 0) {
+
+        @for (repo of repositories; track $index) {
+        <div class="repo p-3 m-3">
+            <h5>
+                <a [href]="repo.html_url" target="_blank">{{ repo.name }}</a>
+            </h5>
+            <p>
+                {{ repo.description }}
+            </p>
+            <div class="language">
+                {{ repo.language }}
+            </div>
+        </div>
+        }
+        }
+
+        @if (userNotFound) {
+
+        <div class="p-3">
+            <h2>User Not Found</h2>
+        </div>
+        }
+
+    </div>
+    <div class="pagination px-5 mx-5">
+        <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+        <!-- <button (click)="nextPage()" [disabled]="endIndex <= repositories.length">Next</button> -->
+        <button (click)="nextPage()" >Next</button>
+
+      </div>
+    @if (isLoading) {
+    <div>
+        <!-- Skeleton loader here -->
+        <img src="./assets/img/loader.gif" alt="" width="100%">
+    </div>
+    }
+</div>
