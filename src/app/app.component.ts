@@ -11,5 +11,5 @@ import { HomeComponent } from "./components/home/home.component";
     imports: [CommonModule, RouterOutlet, HomeComponent]
 })
 export class AppComponent {
-  title = 'fyle-internship-challenge';
+  title = 'GitHub_App';
 }
