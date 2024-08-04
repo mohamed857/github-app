@@ -75,5 +75,11 @@ export class HomeComponent implements OnInit {
       this.getRepositories(this.userName, startIndex, endIndex);
     }
   }
-  
+
+  getRepoLanguages(repo: any):any {
+    this._shar.getRepoLanguages(this.userName, repo).subscribe((languages) => {
+      // repo.languages = Object.keys(languages);
+      return languages
+    });
+  }
 }

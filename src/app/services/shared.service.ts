@@ -17,10 +17,9 @@ export class SharedService {
       `https://api.github.com/users/${userName}/repos`
     );
   };
+
+  getRepoLanguages(userName: any, repo: any) {
+    const apiUrl = `https://api.github.com/repos/${userName}/${repo.name}/languages`;
+    return this.http.get<any>(apiUrl);
+  }
 }
-// ,
-//       {
-//         params: {
-//           per_page: pageSize.toString(),
-//         },
-//       }
